@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import {StyleSheet, View, TextInput, Button, Alert} from 'react-native'
+import {StyleSheet, View, TextInput, Alert, Keyboard} from 'react-native'
+import { AntDesign } from '@expo/vector-icons'
 import {theme} from '../theme'
 
 
@@ -9,6 +10,7 @@ export const AddTodo = ({onSubmit}) => {
         if(value.trim()){
             onSubmit(value),
             setValue('')
+            Keyboard.dismiss()
         }
         else{
             Alert.alert('please write title')
@@ -24,7 +26,14 @@ export const AddTodo = ({onSubmit}) => {
             autoCorrect={false}
             autoCapitalize='none'
             />
-            <Button onPress={pressHandler} color={theme.dark_color} title="Add" /> 
+            {/* <Button 
+            onPress={pressHandler} 
+            color={theme.dark_color} 
+            title="Add" />  */}
+            <AntDesign.Button
+            onPress={pressHandler} name="pluscircle">
+                Add
+            </AntDesign.Button>
         </View>
     )
 }
